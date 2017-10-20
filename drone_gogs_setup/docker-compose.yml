@@ -20,7 +20,7 @@ services:
       - ./data/gogs:/data
     ports:
       - 3000:3000
-    links:
+    # links:
       # - drone-server:drone-server
     # extra_hosts:
     #   - "gogs:10.154.178.243"
