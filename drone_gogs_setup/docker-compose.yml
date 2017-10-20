@@ -73,3 +73,4 @@ services:
       # - DRONE_SERVER=ws://drone-server:8000/ws/broker
       - DRONE_SERVER=drone-server:9000
       - DRONE_SECRET=BuildFun
+      - DRONE_HOST=http://10.10.20.20
