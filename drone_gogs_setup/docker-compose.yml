@@ -42,11 +42,14 @@ services:
   #     DEBUG: "false"
 
   drone-server:
-    image: drone/drone:0.5
+    # image: drone/drone:0.5
+    image: drone/drone:0.8
     ports:
       - 8000:8000
+      - 9000:9000
     volumes:
-      - ./data/drone5:/var/lib/drone/
+      # - ./data/drone5:/var/lib/drone/
+      - ./data/drone8:/var/lib/drone/
     restart: always
     environment:
       - DRONE_OPEN=true
@@ -54,9 +57,11 @@ services:
       - DRONE_GOGS_URL=http://gogs:3000
       - DRONE_GOGS_SKIP_VERIFY=true
       - DRONE_SECRET=BuildFun
+      - DRONE_HOST=http://10.10.20.20
 
   drone-agent:
-    image: drone/drone:0.5
+    # image: drone/drone:0.5
+    image: drone/drone:0.8
     command: agent
     restart: always
     depends_on: [ drone-server ]
@@ -65,5 +70,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DRONE_SERVER=ws://drone-server:8000/ws/broker
+      # - DRONE_SERVER=ws://drone-server:8000/ws/broker
+      - DRONE_SERVER=drone-server:9000
       - DRONE_SECRET=BuildFun
