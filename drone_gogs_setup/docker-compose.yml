@@ -49,7 +49,7 @@ services:
       # - 9000:9000
     volumes:
       # - ./data/drone5:/var/lib/drone/
-      - ./data/drone8:/var/lib/drone/
+      - ./data/drone7:/var/lib/drone/
     restart: always
     environment:
       - DRONE_OPEN=true
