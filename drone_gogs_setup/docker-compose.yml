@@ -43,10 +43,10 @@ services:
 
   drone-server:
     # image: drone/drone:0.5
-    image: drone/drone:0.8
+    image: drone/drone:0.7
     ports:
       - 8000:8000
-      - 9000:9000
+      # - 9000:9000
     volumes:
       # - ./data/drone5:/var/lib/drone/
       - ./data/drone8:/var/lib/drone/
@@ -61,7 +61,7 @@ services:
 
   drone-agent:
     # image: drone/drone:0.5
-    image: drone/drone:0.8
+    image: drone/drone:0.7
     command: agent
     restart: always
     depends_on: [ drone-server ]
@@ -70,7 +70,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      # - DRONE_SERVER=ws://drone-server:8000/ws/broker
-      - DRONE_SERVER=drone-server:9000
+      - DRONE_SERVER=ws://drone-server:8000/ws/broker
+      # - DRONE_SERVER=drone-server:9000
       - DRONE_SECRET=BuildFun
-      - DRONE_HOST=http://10.10.20.20
+      # - DRONE_HOST=http://10.10.20.20
